@@ -1,5 +1,5 @@
 catboost
 pandas
-re
+re==2.2.1
 numpy
 nltk
