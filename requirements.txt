@@ -1,4 +1,4 @@
-catboost=1.2
+catboost
 pandas=1.5.3
 re=2.2.1
 numpy=1.23.5
