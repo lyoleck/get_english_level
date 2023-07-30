@@ -35,11 +35,12 @@ def main():
         df['B1_count'] = df['subtitle_text'].apply(lambda text: count_words(text, b1_voc))
         df['B2_count'] = df['subtitle_text'].apply(lambda text: count_words(text, b2_voc))
         df['C1_count'] = df['subtitle_text'].apply(lambda text: count_words(text, c1_voc))
-        features = df[['A1_count', 'A2_count', 'B1_count', 'B2_count', 'C1_count', 'word_length']]
+        features = df[['A1_count', 'A2_count', 'B1_count', 'B2_count', 'C1_count', 'word_length', 'subtitle_text']]
         input_data = features.iloc[0].values
-        prediction = model.predict(input_data)
-        value = prediction[0]
-        st.write("## Your subtitles English level is: ", value)
+        predictions = model.predict_proba(input_data)
+        categories = model.classes_
+        for index in range(len(categories)):
+            st.write("##", categories[index], ":", predictions[index])
 
 def load_subtitles(file):
     try:
